@@ -1,5 +1,8 @@
 package com.example.timerservicedemo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -22,10 +25,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class DemoPeriodicTask {
 
-    @Scheduled(cron = "0 */5 * ? * *") // Execute every 5 min
+    private static final Logger logger = LoggerFactory.getLogger(DemoPeriodicTask.class);
+
+    // Configure delay based on property of a bean in the context
+    @Scheduled(fixedDelayString = "#{demoTaskProps.executionDelayMs}")
     @Transactional // This is enough to execute the task within a transaction
     public void doSomethingPeriodically() {
-
+        logger.info("DOING STUFF");
     }
 
 }

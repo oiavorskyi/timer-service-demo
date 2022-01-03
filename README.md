@@ -9,6 +9,8 @@ arbitrary tasks with Spring Boot.
 - Scheduling tasks to run periodically while the application is running
 - Executing scheduled tasks within the context of a transaction (implemented in
   a multiple ways)
+- Using external configuration to control the schedule of the periodic tasks,
+  including support for derived values
 
 ## Recommended resources
 
